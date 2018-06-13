@@ -13,7 +13,6 @@ ydl_opts = {
     'format': 'best',
     'forcefilename' : True
 }
-ziks = []
 
 @client.event
 async def on_ready():
@@ -31,25 +30,23 @@ async def on_ready():
 
 		searchUrl = re.search(r"(?P<url>https?://www\.youtube\.[^\s]+)", message.content)
 		if searchUrl:
-			print(searchUrl.group("url"))
-			ziks.append(searchUrl.group("url"))
+			youtubeURL = searchUrl.group("url")
 			try:
 				with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-					ydl.download([searchUrl.group("url")])
+					ydl.download([youtubeURL])
 			except:
 				pass
 
 	await client.logout()
 
 if __name__ == "__main__":
-#client.run(bot=False)
 	login = sys.argv[1]
 	password = sys.argv[2]
 	limit = 100
 	if len(sys.argv) == 4:
 		limit = int(sys.argv[3])
 
-	print("using a limit of", limit, "messages")
+	print("Using a limit of", limit, "messages")
 
 	client.run(login, password, loop = False)
 
