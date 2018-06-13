@@ -14,7 +14,7 @@ options = {
 setup(
     name = "cosyZikDownloader",
     options = options,
-    version = "1",
+    version = "2",
     description = 'Choppe la zik trop cosy',
     executables = executables
 )

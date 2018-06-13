@@ -14,6 +14,15 @@ ydl_opts = {
     'forcefilename' : True
 }
 
+ydl_opts_mp3 = {
+    'format': 'bestaudio/best',
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '192',
+    }]
+}
+
 @client.event
 async def on_ready():
 	print('Logged in as')
@@ -32,8 +41,12 @@ async def on_ready():
 		if searchUrl:
 			youtubeURL = searchUrl.group("url")
 			try:
-				with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+				options = ydl_opts
+				if mode != 0:
+					options = ydl_opts_mp3
+				with youtube_dl.YoutubeDL(options) as ydl:
 					ydl.download([youtubeURL])
+
 			except:
 				pass
 
@@ -43,10 +56,16 @@ if __name__ == "__main__":
 	login = sys.argv[1]
 	password = sys.argv[2]
 	limit = 100
-	if len(sys.argv) == 4:
+	if len(sys.argv) >= 4:
 		limit = int(sys.argv[3])
 
+	mode = 0
+	if len(sys.argv) >= 5:
+		mode = int(sys.argv[4])
+
 	print("Using a limit of", limit, "messages")
+	if mode != 0:
+		print("Conversion to MP3 enabled")
 
 	client.run(login, password, loop = False)
 

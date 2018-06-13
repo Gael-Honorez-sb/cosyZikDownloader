@@ -1,12 +1,14 @@
-# cosyZikDownloader"
+# cosyZikDownloader
 
-cosyZikDownloader.exe login password limit
+cosyZikDownloader.exe <login> <password> <limit> <mode>
 
 login : discord login
 
 password : discord password
 
 limit (optional) : numbers of messages to parse (default : 100)
+
+mode (optional) : 0 for ripping video, 1 for mp3 conversion
 
 Use it at your own risk. 
 
