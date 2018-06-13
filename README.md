@@ -1,11 +1,16 @@
 # cosyZikDownloader"
 
 cosyZikDownloader.exe login password limit
+
 login : discord login
+
 password : discord password
+
 limit (optional) : numbers of messages to parse (default : 100)
 
 Use it at your own risk. 
+
+
 
 
 Copyright (c) 2018 Gaël Honorez
